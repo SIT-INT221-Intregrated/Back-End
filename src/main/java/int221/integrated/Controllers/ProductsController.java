@@ -1,6 +1,10 @@
 package int221.integrated.Controllers;
 
+import java.awt.print.Pageable;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,8 +29,7 @@ public class ProductsController {
 		return "product";
 	}
 
-	@RequestMapping({ "/show/{productCode}" }) // หลังจากเรียก products มาเป็น list
-												// เเล้วต้องกาารดึงข้อมูลมาโชว์รายละเอียด
+	@RequestMapping({ "/show/{productCode}" }) // หลังจากเรียก products มาเป็น list เเล้วต้องกาารดึงข้อมูลมาโชว์รายละเอียด
 	public String show(@PathVariable String productCode, Model model) {
 		model.addAttribute("product", this.productsRepository.findById(productCode).orElse(null));
 		return "show";
@@ -59,13 +62,14 @@ public class ProductsController {
 
 	@RequestMapping({ "/update" })
 	public String update(@RequestParam String productCode, @RequestParam String productname,
-			@RequestParam String productdescription, @RequestParam double price, @RequestParam String manufactureDate) {
+			@RequestParam String productdescription, @RequestParam double price, @RequestParam String saleDate) {
 		Products product = (Products) this.productsRepository.findById(productCode).orElse(null);
 		product.setProductname(productname);
 		product.setProductdescription(productdescription);
 		product.setPrice(price);
-		product.setManufacturedate(manufactureDate);
+		product.setsaleDate(saleDate);
 		this.productsRepository.save(product);
 		return "redirect:/show/" + product.getProductCode();
 	}
+
 }

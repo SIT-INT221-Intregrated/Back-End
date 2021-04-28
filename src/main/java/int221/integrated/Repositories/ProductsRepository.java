@@ -5,5 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import int221.integrated.models.Products;
 
 public interface ProductsRepository extends JpaRepository<Products, String> {
-
 }
