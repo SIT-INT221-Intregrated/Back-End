@@ -16,19 +16,16 @@ public class Products {
 	private String productDescription;
 	private double Price;
 	private String manufactureDate;
-	private String Warranty;
 	private String BrandsBrandId;
 
 	public Products(String productCode, String productname, String productdescription, double price,
-			String manufactureDate, String warranty, String brandsbrandid) {
+			String manufactureDate) {
 		super();
 		this.productCode = productCode;
 		this.productName = productname;
 		this.productDescription = productdescription;
 		this.Price = price;
 		this.manufactureDate = manufactureDate;
-		this.Warranty = warranty;
-		this.BrandsBrandId = brandsbrandid;
 	}
 
 	public String getProductCode() {
@@ -69,21 +66,5 @@ public class Products {
 
 	public void setManufacturedate(String manufacturedate) {
 		this.manufactureDate = manufacturedate;
-	}
-
-	public String getWarranty() {
-		return Warranty;
-	}
-
-	public void setWarranty(String warranty) {
-		this.Warranty = warranty;
-	}
-
-	public String getBrandsbrandid() {
-		return BrandsBrandId;
-	}
-
-	public void setBrandsbrandid(String brandsbrandid) {
-		this.BrandsBrandId = brandsbrandid;
 	}
 }
