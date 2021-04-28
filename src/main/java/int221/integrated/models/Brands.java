@@ -14,6 +14,9 @@ public class Brands {
 	private String brandId;
 	private String brandName;
 
+	public Brands() {
+	}
+
 	public Brands(String brandid, String brandname) {
 		super();
 		this.brandId = brandid;

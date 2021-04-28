@@ -15,8 +15,10 @@ public class Colors {
 	private String colorName;
 	private String HexCode;
 
+	public Colors() {
+	}
+
 	public Colors(String colorId, String colorName, String hexCode) {
-		super();
 		this.colorId = colorId;
 		this.colorName = colorName;
 		HexCode = hexCode;

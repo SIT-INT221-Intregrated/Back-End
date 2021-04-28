@@ -10,22 +10,23 @@ import javax.persistence.Table;
 //@Table(name = "Products")
 public class Products {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private String productCode;
 	private String productName;
 	private String productDescription;
 	private double Price;
-	private String manufactureDate;
+	private String saleDate;
 	private String BrandsBrandId;
 
-	public Products(String productCode, String productname, String productdescription, double price,
-			String manufactureDate) {
-		super();
+	public Products() {
+	}
+
+	public Products(String productCode, String productname, String productdescription, double price, String saleDate) {
 		this.productCode = productCode;
 		this.productName = productname;
 		this.productDescription = productdescription;
 		this.Price = price;
-		this.manufactureDate = manufactureDate;
+		this.saleDate = saleDate;
 	}
 
 	public String getProductCode() {
@@ -60,11 +61,11 @@ public class Products {
 		this.Price = price;
 	}
 
-	public String getManufacturedate() {
-		return manufactureDate;
+	public String getsaleDate() {
+		return saleDate;
 	}
 
-	public void setManufacturedate(String manufacturedate) {
-		this.manufactureDate = manufacturedate;
+	public void setsaleDate(String saleDate) {
+		this.saleDate = saleDate;
 	}
 }
