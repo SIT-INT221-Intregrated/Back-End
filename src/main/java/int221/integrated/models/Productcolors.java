@@ -16,8 +16,10 @@ public class Productcolors {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String Color_ColorId;
 
+	public Productcolors() {
+	}
+
 	public Productcolors(String product_ProductCode, String color_ColorId) {
-		super();
 		Product_ProductCode = product_ProductCode;
 		Color_ColorId = color_ColorId;
 	}
