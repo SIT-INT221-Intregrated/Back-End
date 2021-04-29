@@ -19,11 +19,6 @@ public class Productcolors {
 	public Productcolors() {
 	}
 
-	public Productcolors(String product_ProductCode, String color_ColorId) {
-		Product_ProductCode = product_ProductCode;
-		Color_ColorId = color_ColorId;
-	}
-
 	public String getProduct_productcode() {
 		return Product_ProductCode;
 	}
