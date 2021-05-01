@@ -7,17 +7,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-//@Table(name = "Products")
+//@Table(name = "products")
 public class Products {
 	@Id
-	//@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String productCode;
 	private String productName;
 	private String productDescription;
-	private double Price;
+	private double price;
 	private String saleDate;
-	private String BrandsBrandId;
-
+    //private List<Picture> pictures;
 	public Products() {
 	}
 
@@ -25,7 +24,7 @@ public class Products {
 		this.productCode = productCode;
 		this.productName = productname;
 		this.productDescription = productdescription;
-		this.Price = price;
+		this.price = price;
 		this.saleDate = saleDate;
 	}
 
@@ -54,11 +53,11 @@ public class Products {
 	}
 
 	public double getPrice() {
-		return Price;
+		return price;
 	}
 
 	public void setPrice(double price) {
-		this.Price = price;
+		this.price = price;
 	}
 
 	public String getsaleDate() {
@@ -68,4 +67,5 @@ public class Products {
 	public void setsaleDate(String saleDate) {
 		this.saleDate = saleDate;
 	}
+	
 }

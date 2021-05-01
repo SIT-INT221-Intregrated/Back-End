@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-//@Table(name = "Colors")
+@Table(name = "colors")
 public class Colors {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,4 +47,10 @@ public class Colors {
 	public void setHexcode(String hexcode) {
 		this.HexCode = hexcode;
 	}
+	
 }
+
+
+
+
+

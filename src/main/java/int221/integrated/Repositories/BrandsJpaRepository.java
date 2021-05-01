@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import int221.integrated.models.Brands;
 
-public interface BrandsRepository extends JpaRepository<Brands, String> {
+public interface BrandsJpaRepository extends JpaRepository<Brands, String>{
 
 }

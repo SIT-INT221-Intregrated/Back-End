@@ -7,21 +7,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-//@Table(name = "Brands")
+@Table(name = "brands")
 public class Brands {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private String brandId;
 	private String brandName;
 
-	public Brands() {
-	}
-
-	public Brands(String brandid, String brandname) {
-		super();
-		this.brandId = brandid;
-		this.brandName = brandname;
-	}
+//	public Brands() {
+//	}
+//
+//	public Brands(String brandid, String brandname) {
+//		super();
+//		this.brandId = brandid;
+//		this.brandName = brandname;
+//	}
 
 	public String getBrandid() {
 		return brandId;
@@ -39,3 +39,5 @@ public class Brands {
 		this.brandName = brandname;
 	}
 }
+
+
