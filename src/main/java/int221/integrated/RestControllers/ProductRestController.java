@@ -25,4 +25,28 @@ public class ProductRestController {
 	public Products createProduct(@RequestBody Products newProduct) {
 		return productsJpaRepository.save(newProduct);
 	}
+
+	/*@PostMapping("/create")
+	public Products createProduct(@RequestBody Products newProduct) {
+		return productsJpaRepository.save(newProduct);
+	}
+	
+	@RequestMapping("/create")
+	public String create(Model model) {
+		return "create";
+	}
+
+	@GetMapping("/save")
+	public String save(@RequestBody Products newProduct) {
+		productsJpaRepository.save(newProduct);
+		//newProduct.("product", newProduct);
+		return "redirect:/show/" + newProduct.getProductCode();
+	}
+	
+    @DeleteMapping("/product/{id}")
+    public String deleteProduct(@PathVariable Long id) {
+    	productsJpaRepository.deleteById(id);
+      return "delete product success";
+    }  */
+
 }
