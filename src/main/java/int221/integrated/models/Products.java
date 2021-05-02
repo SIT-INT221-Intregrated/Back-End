@@ -1,22 +1,50 @@
 package int221.integrated.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-//@Table(name = "products")
+@Table(name = "products")
 public class Products {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "productcode")
 	private String productCode;
+
+	@Column(name = "productname")
 	private String productName;
+
+	@Column(name = "productdescription")
 	private String productDescription;
+
+	@Column(name = "price")
 	private double price;
+
+	@Column(name = "saledate")
 	private String saleDate;
-    //private List<Picture> pictures;
+	// private List<Picture> pictures;
+
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "brandId", nullable = false) private Brands
+	 * brands_brandid;
+	 * 
+	 * 
+	 * @ManyToMany(fetch=FetchType.LAZY)
+	 * 
+	 * @JoinTable(name="productcode"
+	 */
 	public Products() {
 	}
 
@@ -67,5 +95,5 @@ public class Products {
 	public void setsaleDate(String saleDate) {
 		this.saleDate = saleDate;
 	}
-	
+
 }

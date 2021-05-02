@@ -1,5 +1,6 @@
 package int221.integrated.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,9 +11,14 @@ import javax.persistence.Table;
 @Table(name = "colors")
 public class Colors {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "colorid")
 	private String colorId;
+
+	@Column(name = "colorname")
 	private String colorName;
+
+	@Column(name = "Hexcode")
 	private String HexCode;
 
 	public Colors() {
@@ -21,7 +27,7 @@ public class Colors {
 	public Colors(String colorId, String colorName, String hexCode) {
 		this.colorId = colorId;
 		this.colorName = colorName;
-		HexCode = hexCode;
+		this.HexCode = hexCode;
 	}
 
 	public String getColorid() {
@@ -47,10 +53,5 @@ public class Colors {
 	public void setHexcode(String hexcode) {
 		this.HexCode = hexcode;
 	}
-	
+
 }
-
-
-
-
-
