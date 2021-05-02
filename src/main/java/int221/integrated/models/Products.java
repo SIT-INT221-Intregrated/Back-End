@@ -1,14 +1,14 @@
 package int221.integrated.models;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -19,65 +19,74 @@ public class Products {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "productcode")
-	private String productCode;
+	private String productcode;
 
 	@Column(name = "productname")
-	private String productName;
+	private String productname;
 
 	@Column(name = "productdescription")
-	private String productDescription;
+	private String productdescription;
 
 	@Column(name = "price")
 	private double price;
 
 	@Column(name = "saledate")
-	private String saleDate;
-	// private List<Picture> pictures;
+	private java.sql.Date saledate;
+	
+	@Column(name = "brands_brandid")
+	private String brands_brandid;
+	
+	@Column(name = "images")
+	private String images;
 
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name = "brandId", nullable = false) private Brands
-	 * brands_brandid;
-	 * 
-	 * 
-	 * @ManyToMany(fetch=FetchType.LAZY)
-	 * 
-	 * @JoinTable(name="productcode"
-	 */
+	@ManyToOne
+	@JoinColumn(name = "brands_brandid", insertable = false, updatable = false)
+	Brands brands;
+
+	@OneToMany(mappedBy = "products")
+	Set<Productcolors> productcolors;
+
+	public Brands getBrands() {
+		return brands;
+	}
+
+	public Set<Productcolors> getProductcolors() {
+		return productcolors;
+	}
+
 	public Products() {
 	}
 
-	public Products(String productCode, String productname, String productdescription, double price, String saleDate) {
-		this.productCode = productCode;
-		this.productName = productname;
-		this.productDescription = productdescription;
+	public Products(String productCode, String productname, String productdescription, double price, java.sql.Date saleDate) {
+		this.productcode = productCode;
+		this.productname = productname;
+		this.productdescription = productdescription;
 		this.price = price;
-		this.saleDate = saleDate;
+		this.saledate = saleDate;
 	}
 
 	public String getProductCode() {
-		return productCode;
+		return productcode;
 	}
 
 	public void setProductCode(String productCode) {
-		this.productCode = productCode;
+		this.productcode = productCode;
 	}
 
 	public String getProductname() {
-		return productName;
+		return productname;
 	}
 
 	public void setProductname(String productname) {
-		this.productName = productname;
+		this.productname = productname;
 	}
 
 	public String getProductdescription() {
-		return productDescription;
+		return productdescription;
 	}
 
 	public void setProductdescription(String productdescription) {
-		this.productDescription = productdescription;
+		this.productdescription = productdescription;
 	}
 
 	public double getPrice() {
@@ -88,12 +97,14 @@ public class Products {
 		this.price = price;
 	}
 
-	public String getsaleDate() {
-		return saleDate;
+	public java.sql.Date getsaleDate() {
+		return saledate;
 	}
 
-	public void setsaleDate(String saleDate) {
-		this.saleDate = saleDate;
+	public void setsaleDate(java.sql.Date saleDate) {
+		this.saledate = saleDate;
 	}
+	
+	
 
 }

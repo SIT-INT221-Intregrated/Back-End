@@ -1,7 +1,6 @@
 package int221.integrated.RestControllers;
 
 import int221.integrated.Repositories.ProductColorsJpaRepository;
-import int221.integrated.models.Colors;
 import int221.integrated.models.Productcolors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

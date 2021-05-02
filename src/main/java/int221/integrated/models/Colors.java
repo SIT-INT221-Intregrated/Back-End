@@ -1,10 +1,13 @@
 package int221.integrated.models;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,45 +16,48 @@ public class Colors {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "colorid")
-	private String colorId;
+	private String colorid;
 
 	@Column(name = "colorname")
-	private String colorName;
+	private String colorname;
 
-	@Column(name = "Hexcode")
-	private String HexCode;
+	@Column(name = "hexcode")
+	private String hexcode;
+	
+	@OneToMany(mappedBy = "colors")
+	Set<Productcolors> productcolors;
 
 	public Colors() {
 	}
 
 	public Colors(String colorId, String colorName, String hexCode) {
-		this.colorId = colorId;
-		this.colorName = colorName;
-		this.HexCode = hexCode;
+		this.colorid = colorId;
+		this.colorname = colorName;
+		this.hexcode = hexCode;
 	}
 
 	public String getColorid() {
-		return colorId;
+		return colorid;
 	}
 
 	public void setColorid(String colorid) {
-		this.colorId = colorid;
+		this.colorid = colorid;
 	}
 
 	public String getColorname() {
-		return colorName;
+		return colorname;
 	}
 
 	public void setColorname(String colorname) {
-		this.colorName = colorname;
+		this.colorname = colorname;
 	}
 
 	public String getHexcode() {
-		return HexCode;
+		return hexcode;
 	}
 
 	public void setHexcode(String hexcode) {
-		this.HexCode = hexcode;
+		this.hexcode = hexcode;
 	}
 
 }
