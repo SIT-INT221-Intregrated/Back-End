@@ -17,33 +17,20 @@ public class ProductRestController {
 		return productsJpaRepository.findAll();
 	}
 
-	@GetMapping("/products/{productCode}")
-	public Products showProduct(@PathVariable String productCode) {
-		Products product = this.productsJpaRepository.findById(productCode).orElse(null);
-		return product;
-	}
-
-	@PostMapping("/products")
-	public Products createProduct(@RequestBody Products newProduct) {
-		return productsJpaRepository.save(newProduct);
-	}
-
-	@DeleteMapping("/product/{productCode}")
-	public String deleteProduct(@PathVariable String productCode) {
-		productsJpaRepository.deleteById(productCode);
-		return "delete product success";
+	@GetMapping("/products/{productcode}")
+	public Products showProduct(@PathVariable String productcode) {
+		return this.productsJpaRepository.findById(productcode).orElse(null);
 	}
 
 	/*
-	 * @PostMapping("/create") public Products createProduct(@RequestBody Products
-	 * newProduct) { return productsJpaRepository.save(newProduct); }
-	 * 
-	 * @RequestMapping("/create") public String create(Model model) { return
-	 * "create"; }
-	 * 
-	 * @GetMapping("/save") public String save(@RequestBody Products newProduct) {
-	 * productsJpaRepository.save(newProduct); // newProduct.("product",
-	 * newProduct); return "redirect:/show/" + newProduct.getProductCode(); }
+	 * @PostMapping("/products/{productcode}") public Products
+	 * createProduct(@RequestBody Products newProduct) { return
+	 * productsJpaRepository.save(newProduct); }
 	 */
 
+	@DeleteMapping("/products/{productcode}")
+	public String deleteProduct(@PathVariable String productcode) {
+		productsJpaRepository.deleteById(productcode);
+		return "Delete Product" + " " + productcode + " " + "Success";
+	}
 }
