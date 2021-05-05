@@ -23,9 +23,6 @@ public class ProductColorRestController {
         Productcolors productsColor = this.productColorsJpaRepository.findById(productcolors_id).orElse(null);
         return productsColor;
     }
-    /*@PostMapping("/productcolors")
-    public Colors createProductsColors(@RequestBody Productcolors newProductcolor) {
-        return productColorsJpaRepository.save(newProductcolor);
-    }*/
+  
 
 }

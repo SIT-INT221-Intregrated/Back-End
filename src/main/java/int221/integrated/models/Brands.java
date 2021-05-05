@@ -2,6 +2,7 @@ package int221.integrated.models;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +19,7 @@ public class Brands {
 	@Column(name = "brandid")
 	private String brandid;
 
-	@OneToMany(mappedBy = "brands_brandid")
+	@OneToMany(mappedBy = "brands_brandid", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Products> products;
 
 	@Column(name = "brandname")

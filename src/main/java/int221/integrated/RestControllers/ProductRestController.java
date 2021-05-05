@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@CrossOrigin(origins = { "http://localhost:8080" })
+@CrossOrigin(origins = { "http://localhost:3000" })
 @RestController // คลาสนี้เป็น Controller ของ API
 public class ProductRestController {
 	@Autowired
@@ -23,27 +23,16 @@ public class ProductRestController {
 		return product;
 	}
 
-	@PostMapping("/products")
-	public Products createProduct(@RequestBody Products newProduct) {
-		return productsJpaRepository.save(newProduct);
-	}
 
-	@DeleteMapping("/product/{productCode}")
-	public String deleteProduct(@PathVariable String productCode) {
-		productsJpaRepository.deleteById(productCode);
+	@DeleteMapping("/products/{productcode}")
+	public String deleteProduct(@PathVariable String productcode) {
+		productsJpaRepository.deleteById(productcode);
 		return "delete product success";
 	}
+	
+	
+	
 
-	/*
-	 * @PostMapping("/create") public Products createProduct(@RequestBody Products
-	 * newProduct) { return productsJpaRepository.save(newProduct); }
-	 * 
-	 * @RequestMapping("/create") public String create(Model model) { return
-	 * "create"; }
-	 * 
-	 * @GetMapping("/save") public String save(@RequestBody Products newProduct) {
-	 * productsJpaRepository.save(newProduct); // newProduct.("product",
-	 * newProduct); return "redirect:/show/" + newProduct.getProductCode(); }
-	 */
+	
 
 }

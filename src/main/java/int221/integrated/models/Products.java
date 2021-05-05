@@ -1,10 +1,11 @@
 package int221.integrated.models;
 
+import java.sql.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,10 +33,10 @@ public class Products {
 
 	@Column(name = "saledate")
 	private java.sql.Date saledate;
-	
+
 	@Column(name = "brands_brandid")
 	private String brands_brandid;
-	
+
 	@Column(name = "images")
 	private String images;
 
@@ -43,7 +44,7 @@ public class Products {
 	@JoinColumn(name = "brands_brandid", insertable = false, updatable = false)
 	Brands brands;
 
-	@OneToMany(mappedBy = "products")
+	@OneToMany(mappedBy = "products", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Productcolors> productcolors;
 
 	public Brands getBrands() {
@@ -57,20 +58,20 @@ public class Products {
 	public Products() {
 	}
 
-	public Products(String productCode, String productname, String productdescription, double price, java.sql.Date saleDate) {
-		this.productcode = productCode;
+	public Products(String productcode, String productname, String productdescription, double price, Date saledate) {
+		this.productcode = productcode;
 		this.productname = productname;
 		this.productdescription = productdescription;
 		this.price = price;
-		this.saledate = saleDate;
+		this.saledate = saledate;
 	}
 
-	public String getProductCode() {
+	public String getProductcode() {
 		return productcode;
 	}
 
-	public void setProductCode(String productCode) {
-		this.productcode = productCode;
+	public void setProductcode(String productcode) {
+		this.productcode = productcode;
 	}
 
 	public String getProductname() {
@@ -97,14 +98,11 @@ public class Products {
 		this.price = price;
 	}
 
-	public java.sql.Date getsaleDate() {
+	public java.sql.Date getSaledate() {
 		return saledate;
 	}
 
-	public void setsaleDate(java.sql.Date saleDate) {
-		this.saledate = saleDate;
+	public void setsaleDate(java.sql.Date saledate) {
+		this.saledate = saledate;
 	}
-	
-	
-
 }

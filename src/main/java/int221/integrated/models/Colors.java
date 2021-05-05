@@ -2,6 +2,7 @@ package int221.integrated.models;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,8 +24,8 @@ public class Colors {
 
 	@Column(name = "hexcode")
 	private String hexcode;
-	
-	@OneToMany(mappedBy = "colors")
+
+	@OneToMany(mappedBy = "colors", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Productcolors> productcolors;
 
 	public Colors() {
@@ -59,5 +60,4 @@ public class Colors {
 	public void setHexcode(String hexcode) {
 		this.hexcode = hexcode;
 	}
-
 }
