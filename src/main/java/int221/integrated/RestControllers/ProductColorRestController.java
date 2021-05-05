@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = { "http://localhost:80" })
+@CrossOrigin
 @RestController // คลาสนี้เป็น Controller ของ API
 
 public class ProductColorRestController {

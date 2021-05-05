@@ -58,12 +58,16 @@ public class Products {
 	public Products() {
 	}
 
-	public Products(String productcode, String productname, String productdescription, double price, Date saledate) {
+	public Products(String productcode, String productname, String productdescription, double price, Date saledate,
+			String brands_brandid, String images, Brands brands, Set<Productcolors> productcolors) {
+		super();
 		this.productcode = productcode;
 		this.productname = productname;
 		this.productdescription = productdescription;
 		this.price = price;
 		this.saledate = saledate;
+		this.brands_brandid = brands_brandid;
+		this.images = images;
 	}
 
 	public String getProductcode() {

@@ -12,7 +12,7 @@ import java.util.List;
 import int221.integrated.Repositories.BrandsJpaRepository;
 import int221.integrated.models.Brands;
 
-@CrossOrigin(origins = { "http://localhost:8080" })
+@CrossOrigin
 @RestController // คลาสนี้เป็น Controller ของ API
 
 public class BrandRestController {
