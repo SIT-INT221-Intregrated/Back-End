@@ -31,7 +31,7 @@ public class ProductRestController {
 		return "delete product success";
 	}
 
-	@PostMapping("/add")
+	@PostMapping("/products/add")
 	public Products create(@RequestBody Products newProduct) {
 		if (productsJpaRepository.findById(newProduct.getProductcode()).orElse(null) != null) {
 			throw new ProductException(ExceptionResponse.ERROR_CODE.ITEM_ALREADY_EXIST,
