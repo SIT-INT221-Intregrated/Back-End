@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -68,6 +69,25 @@ public class FileUploadController {
 		}
 		return "Add Product Color Complete";
 	}
+	
+	@PutMapping(value = "/UpdateProducts")
+	public String UpdateProducts() {
+		return null;
+		
+	}
+	
+	@PutMapping(value = "/UpdateColors")
+	public String UpdateColors() {
+		return null;
+		
+	}
+	
+	@PutMapping(value = "/UpdateImages")
+	public String UpdateImages() {
+		return null;
+		
+	}
+	
 
 	@GetMapping(value = "/Files/{filename:.+}", produces = MediaType.IMAGE_JPEG_VALUE)
 	public Resource serveFile(@PathVariable String filename) {

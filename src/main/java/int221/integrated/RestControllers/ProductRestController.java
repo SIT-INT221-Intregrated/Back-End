@@ -17,28 +17,16 @@ public class ProductRestController {
 		return productsJpaRepository.findAll();
 	}
 
-	@GetMapping("/products/{productCode}")
-	public Products showProduct(@PathVariable String productCode) {
-		Products product = this.productsJpaRepository.findById(productCode).orElse(null);
-		return product;
-	}
+//	@GetMapping("/products/{productCode}")
+//	public Products showProduct(@PathVariable String productCode) {
+//		Products product = this.productsJpaRepository.findById(productCode).orElse(null);
+//		return product;
+//	}
 
 	@DeleteMapping("/products/{productcode}")
 	public String deleteProduct(@PathVariable String productcode) {
 		productsJpaRepository.deleteById(productcode);
 		return "delete product success";
 	}
-
-//	@PostMapping("/add")
-//	public Products create(@RequestBody Products newProduct) {
-//		if (productsJpaRepository.findById(newProduct.getProductcode()).orElse(null) != null) {
-//			throw new ProductException(ExceptionResponse.ERROR_CODE.ITEM_ALREADY_EXIST,
-//					"id :product {" + newProduct.getProductcode() + "} does already exist !!");
-//		} else if (productsJpaRepository.findByProductname(newProduct.getProductname()) != null) {
-//			throw new ProductException(ExceptionResponse.ERROR_CODE.ITEM_NAME_ALREADY_EXIST,
-//					"name :product {" + newProduct.getProductname() + "} does already exist !!");
-//		}
-//		return productsJpaRepository.save(newProduct);
-//	}
 
 }

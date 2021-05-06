@@ -1,0 +1,11 @@
+services:
+  backend:
+  build: .
+  image: maven-backend
+  ports:
+    - 3000:3000
+
+  networks:
+    default:
+      external:
+            name: intregrated-network

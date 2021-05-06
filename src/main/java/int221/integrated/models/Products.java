@@ -6,8 +6,6 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,7 +16,6 @@ import javax.persistence.Table;
 @Table(name = "products")
 public class Products {
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "productcode")
 	private String productcode;
 
@@ -55,19 +52,24 @@ public class Products {
 		return productcolors;
 	}
 
-	public Products() {
+	public void setSaledate(java.sql.Date saledate) {
+		this.saledate = saledate;
 	}
 
-	public Products(String productcode, String productname, String productdescription, double price, Date saledate,
-			String brands_brandid, String images, Brands brands, Set<Productcolors> productcolors) {
-		super();
-		this.productcode = productcode;
-		this.productname = productname;
-		this.productdescription = productdescription;
-		this.price = price;
-		this.saledate = saledate;
+	public void setBrands_brandid(String brands_brandid) {
 		this.brands_brandid = brands_brandid;
+	}
+
+	public void setImages(String images) {
 		this.images = images;
+	}
+
+	public void setBrands(Brands brands) {
+		this.brands = brands;
+	}
+
+	public void setProductcolors(Set<Productcolors> productcolors) {
+		this.productcolors = productcolors;
 	}
 
 	public String getProductcode() {
