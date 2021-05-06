@@ -5,13 +5,14 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
-
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import int221.integrated.Exception.StorageException;
@@ -38,7 +39,8 @@ public class FileSystemStorageService implements StorageService {
 			throw new StorageException("Failed to store file " + file.getOriginalFilename(), e);
 		}
 	}
-
+	
+	
 	@Override
 	public Stream<Path> loadAll() {
 		try {

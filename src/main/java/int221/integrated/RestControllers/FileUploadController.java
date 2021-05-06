@@ -1,6 +1,7 @@
 package int221.integrated.RestControllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -16,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import int221.integrated.Repositories.ProductColorsJpaRepository;
 import int221.integrated.Repositories.ProductsJpaRepository;
+import int221.integrated.models.Productcolors;
 import int221.integrated.models.Products;
 import int221.integrated.service.StorageService;
 import int221.integrated.Exception.*;
@@ -28,8 +32,8 @@ public class FileUploadController {
 	@Autowired
 	ProductsJpaRepository productsJpaRepository;
 
-//	@Autowired
-//    private ProductColorsJpaRepository productColorsJpaRepository;
+	@Autowired
+	private ProductColorsJpaRepository productColorsJpaRepository;
 
 	final StorageService storageService;
 
@@ -38,15 +42,32 @@ public class FileUploadController {
 		this.storageService = storageService;
 	}
 
-//	@GetMapping("/")
-//	public String listUploadedFiles() throws IOException {
-//		storageService.loadAll()
-//				.map(path -> MvcUriComponentsBuilder
-//						.fromMethodName(FileUploadController.class, "serveFile", path.getFileName().toString()).build()
-//						.toUri().toString())
-//				.collect(Collectors.toList());
-//		return "uploadForm";
-//	}
+	@PostMapping(value = "/addProducts")
+	public String create(@RequestBody Products newProducts) {
+		int lastCode = Integer.parseInt(productsJpaRepository.findAll().get((int) productsJpaRepository.count() - 1)
+				.getProductcode().substring(1));
+		int newLastCode = lastCode + 1;
+		String newProductCode = "p" + (newLastCode);
+		newProducts.setProductcode(newProductCode);
+		productsJpaRepository.save(newProducts);
+		return "uplode Product";
+	}
+
+	@PostMapping(value = "/addProductColors")
+	public String create(@RequestBody List<Productcolors> newColors) {
+		for (int i = 0; i < newColors.size(); i++) {
+			int lastColorsId = Integer.parseInt(productsJpaRepository.findAll()
+					.get((int) productsJpaRepository.count() - 1).getProductcode().substring(1));
+			int newlastColorsId = lastColorsId + 1;
+			String newProductColorsId = "pc" + (newlastColorsId);
+			newColors.get(i).setProduct_productcode(
+					productsJpaRepository.findAll().get((int) productsJpaRepository.count() - 1).getProductcode());
+			newColors.get(i).setProductcolors_id(newProductColorsId);
+			productColorsJpaRepository.save(newColors.get(i));
+
+		}
+		return "Add Product Color Complete";
+	}
 
 	@GetMapping(value = "/Files/{filename:.+}", produces = MediaType.IMAGE_JPEG_VALUE)
 	public Resource serveFile(@PathVariable String filename) {
@@ -68,19 +89,5 @@ public class FileUploadController {
 	public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
 		return ResponseEntity.notFound().build();
 	}
-
-//	@PostMapping(value = "/upload")
-//    public String create(@RequestBody Products newProducts, @RequestBody Productcolors newProductColors) {
-//    	productsJpaRepository.save(newProducts);
-//    	productColorsJpaRepository.save(newProductColors);
-//		return "uplode Product" + newProducts.getProductCode() + " "
-//			+ newProducts.getProductname() + " "
-//			+ newProducts.getProductdescription() + " "
-//			+ newProducts.getPrice() + " "
-//			+ newProducts.getsaleDate() + " "
-//			+ newProducts.getImages() + " "
-//
-//			;
-//    }
 
 }

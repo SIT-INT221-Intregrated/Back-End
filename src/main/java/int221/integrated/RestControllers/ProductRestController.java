@@ -1,7 +1,5 @@
 package int221.integrated.RestControllers;
 
-import int221.integrated.Exception.ExceptionResponse;
-import int221.integrated.Exception.ProductException;
 import int221.integrated.Repositories.ProductsJpaRepository;
 import int221.integrated.models.Products;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,16 +29,16 @@ public class ProductRestController {
 		return "delete product success";
 	}
 
-	@PostMapping("/add")
-	public Products create(@RequestBody Products newProduct) {
-		if (productsJpaRepository.findById(newProduct.getProductcode()).orElse(null) != null) {
-			throw new ProductException(ExceptionResponse.ERROR_CODE.ITEM_ALREADY_EXIST,
-					"id :product {" + newProduct.getProductcode() + "} does already exist !!");
-		} else if (productsJpaRepository.findByProductname(newProduct.getProductname()) != null) {
-			throw new ProductException(ExceptionResponse.ERROR_CODE.ITEM_NAME_ALREADY_EXIST,
-					"name :product {" + newProduct.getProductname() + "} does already exist !!");
-		}
-		return productsJpaRepository.save(newProduct);
-	}
+//	@PostMapping("/add")
+//	public Products create(@RequestBody Products newProduct) {
+//		if (productsJpaRepository.findById(newProduct.getProductcode()).orElse(null) != null) {
+//			throw new ProductException(ExceptionResponse.ERROR_CODE.ITEM_ALREADY_EXIST,
+//					"id :product {" + newProduct.getProductcode() + "} does already exist !!");
+//		} else if (productsJpaRepository.findByProductname(newProduct.getProductname()) != null) {
+//			throw new ProductException(ExceptionResponse.ERROR_CODE.ITEM_NAME_ALREADY_EXIST,
+//					"name :product {" + newProduct.getProductname() + "} does already exist !!");
+//		}
+//		return productsJpaRepository.save(newProduct);
+//	}
 
 }
