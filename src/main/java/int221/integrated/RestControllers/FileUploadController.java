@@ -70,23 +70,24 @@ public class FileUploadController {
 		return "Add Product Color Complete";
 	}
 	
-	@PutMapping(value = "/UpdateProducts")
-	public String UpdateProducts() {
-		return null;
-		
-	}
-	
-	@PutMapping(value = "/UpdateColors")
-	public String UpdateColors() {
-		return null;
-		
-	}
-	
-	@PutMapping(value = "/UpdateImages")
-	public String UpdateImages() {
-		return null;
-		
-	}
+//	@PutMapping(value = "/UpdateProducts")
+//	public String UpdateProducts() {
+//		
+//		return null;
+//		
+//	}
+//	
+//	@PutMapping(value = "/UpdateColors")
+//	public String UpdateColors() {
+//		return null;
+//		
+//	}
+//	
+//	@PutMapping(value = "/UpdateImages")
+//	public String UpdateImages() {
+//		return null;
+//		
+//	}
 	
 
 	@GetMapping(value = "/Files/{filename:.+}", produces = MediaType.IMAGE_JPEG_VALUE)
