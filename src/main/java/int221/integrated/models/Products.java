@@ -44,34 +44,6 @@ public class Products {
 	@OneToMany(mappedBy = "products", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Productcolors> productcolors;
 
-	public Brands getBrands() {
-		return brands;
-	}
-
-	public Set<Productcolors> getProductcolors() {
-		return productcolors;
-	}
-
-	public void setSaledate(java.sql.Date saledate) {
-		this.saledate = saledate;
-	}
-
-	public void setBrands_brandid(String brands_brandid) {
-		this.brands_brandid = brands_brandid;
-	}
-
-	public void setImages(String images) {
-		this.images = images;
-	}
-
-	public void setBrands(Brands brands) {
-		this.brands = brands;
-	}
-
-	public void setProductcolors(Set<Productcolors> productcolors) {
-		this.productcolors = productcolors;
-	}
-
 	public String getProductcode() {
 		return productcode;
 	}
@@ -108,7 +80,33 @@ public class Products {
 		return saledate;
 	}
 
-	public void setsaleDate(java.sql.Date saledate) {
+	public void setSaledate(java.sql.Date saledate) {
 		this.saledate = saledate;
 	}
+
+	public String getImages() {
+		return images;
+	}
+
+	public void setImages(String images) {
+		this.images = images;
+	}
+
+	public String getBrands_brandid() {
+		return brands_brandid;
+	}
+
+	public void setBrands_brandid(String brands_brandid) {
+		this.brands_brandid = brands_brandid;
+	}
+	
+	public Set<Productcolors> getProductcolors() {
+		return productcolors;
+	}
+
+	public void setProductcolors(Set<Productcolors> productcolors) {
+		this.productcolors = productcolors;
+	}
+
+	
 }

@@ -22,14 +22,6 @@ public class Brands {
 	@Column(name = "brandname")
 	private String brandname;
 
-	public Brands() {
-	}
-
-	public Brands(String brandid, String brandname) {
-		this.brandid = brandid;
-		this.brandname = brandname;
-	}
-
 	public String getBrandid() {
 		return brandid;
 	}
@@ -45,4 +37,5 @@ public class Brands {
 	public void setBrandname(String brandname) {
 		this.brandname = brandname;
 	}
+
 }

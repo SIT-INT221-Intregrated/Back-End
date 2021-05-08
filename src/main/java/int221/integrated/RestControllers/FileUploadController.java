@@ -43,68 +43,30 @@ public class FileUploadController {
 		this.storageService = storageService;
 	}
 
-	@PostMapping(value = "/addProducts")
-	public String create(@RequestBody Products newProducts) {
-		int lastCode = Integer.parseInt(productsJpaRepository.findAll().get((int) productsJpaRepository.count() - 1)
-				.getProductcode().substring(1));
-		int newLastCode = lastCode + 1;
-		String newProductCode = "p" + (newLastCode);
-		newProducts.setProductcode(newProductCode);
-		productsJpaRepository.save(newProducts);
-		return "uplode Product";
-	}
-
-	@PostMapping(value = "/addProductColors")
-	public String create(@RequestBody List<Productcolors> newColors) {
-		for (int i = 0; i < newColors.size(); i++) {
-			int lastColorsId = Integer.parseInt(productsJpaRepository.findAll()
-					.get((int) productsJpaRepository.count() - 1).getProductcode().substring(1));
-			int newlastColorsId = lastColorsId + 1;
-			String newProductColorsId = "pc" + (newlastColorsId);
-			newColors.get(i).setProduct_productcode(
-					productsJpaRepository.findAll().get((int) productsJpaRepository.count() - 1).getProductcode());
-			newColors.get(i).setProductcolors_id(newProductColorsId);
-			productColorsJpaRepository.save(newColors.get(i));
-
-		}
-		return "Add Product Color Complete";
-	}
-	
-	@PutMapping(value = "/UpdateProducts")
-	public String UpdateProducts() {
-		return null;
-		
-	}
-	
-	@PutMapping(value = "/UpdateColors")
-	public String UpdateColors() {
-		return null;
-		
-	}
-	
-	@PutMapping(value = "/UpdateImages")
-	public String UpdateImages() {
-		return null;
-		
-	}
-	
-
 	@GetMapping(value = "/Files/{filename:.+}", produces = MediaType.IMAGE_JPEG_VALUE)
 	public Resource serveFile(@PathVariable String filename) {
 		return storageService.loadAsResource(filename);
 	}
 
-	@DeleteMapping(value = "/DeleteFile/{filename:.+}", produces = MediaType.IMAGE_JPEG_VALUE)
-	public void deleteFile(@PathVariable String filename) throws IOException {
-		storageService.delete(filename);
-	}
-
-	@PostMapping("/UploadImage")
+	@PostMapping("/uploadImage")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file) {
 		storageService.store(file);
 		return "Upload complete";
 	}
+	
+	@PutMapping("/updateimage/{productcode}")
+    public String handleFileUpdate(@PathVariable String productcode,@RequestParam("file") MultipartFile file) throws IOException {
+    	String oldImage = productsJpaRepository.findById(productcode).get().getImages();
+    	storageService.delete(productsJpaRepository.findById(productcode).get().getImages());
+        storageService.store(file);
+        	return "Update complete: Change "+oldImage+ " to "+file.getOriginalFilename();
+    }
 
+	@DeleteMapping(value = "/deleteFile/{filename:.+}", produces = MediaType.IMAGE_JPEG_VALUE)
+	public void deleteFile(@PathVariable String filename) throws IOException {
+		storageService.delete(filename);
+	}
+	
 	@ExceptionHandler(StorageFileNotFoundException.class)
 	public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
 		return ResponseEntity.notFound().build();

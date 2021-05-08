@@ -9,56 +9,62 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
 @Entity
 @Table(name = "productcolors")
 public class Productcolors {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "productcolors_id")
-    private String productcolors_id;
+    private String productcolorsid;
 
     @Column(name = "product_productcode")
-    private String product_productcode;
+    private String productcode;
 
     @Column(name = "color_colorid")
-    private String color_colorid;
+    private String colorid;
 
     @ManyToOne
     @JoinColumn(name = "color_colorid", insertable = false, updatable = false)
     Colors colors;
 
-    @ManyToOne
+	@ManyToOne
     @JoinColumn(name = "product_productcode", insertable = false, updatable = false)
     Products products;
 
-    public String getHexcode() {
-        return colors.getHexcode();
+    public Productcolors() {
     }
 
-    public void setProductcolors_id(String productcolors_id) {
-		this.productcolors_id = productcolors_id;
+	public String getProductcolorsid() {
+		return productcolorsid;
 	}
 
-	public void setProduct_productcode(String product_productcode) {
-		this.product_productcode = product_productcode;
+	public void setProductcolorsid(String productcolorsid) {
+		this.productcolorsid = productcolorsid;
 	}
 
-	public void setColor_colorid(String color_colorid) {
-		this.color_colorid = color_colorid;
+	public String getProductcode() {
+		return productcode;
+	}
+
+	public void setProductcode(String productcode) {
+		this.productcode = productcode;
+	}
+
+	public String getColorid() {
+		return colorid;
+	}
+
+	public void setColorid(String colorid) {
+		this.colorid = colorid;
 	}
 
 	public void setColors(Colors colors) {
 		this.colors = colors;
 	}
-
-	public String getColorname() {
-        return colors.getColorname();
+    
+	public String getHexcode() {
+        return colors.getHexcode();
     }
-
-    public Productcolors() {
-    }
-
-    public String getColorid() {
-        return colors.getColorid();
-    }
+    
 }

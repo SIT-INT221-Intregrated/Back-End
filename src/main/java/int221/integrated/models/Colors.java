@@ -25,15 +25,6 @@ public class Colors {
 	@OneToMany(mappedBy = "colors", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Productcolors> productcolors;
 
-	public Colors() {
-	}
-
-	public Colors(String colorId, String colorName, String hexCode) {
-		this.colorid = colorId;
-		this.colorname = colorName;
-		this.hexcode = hexCode;
-	}
-
 	public String getColorid() {
 		return colorid;
 	}
@@ -57,4 +48,13 @@ public class Colors {
 	public void setHexcode(String hexcode) {
 		this.hexcode = hexcode;
 	}
+
+	public Set<Productcolors> getProductcolors() {
+		return productcolors;
+	}
+
+	public void setProductcolors(Set<Productcolors> productcolors) {
+		this.productcolors = productcolors;
+	}
+
 }
