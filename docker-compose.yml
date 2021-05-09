@@ -1,0 +1,19 @@
+version: "3"
+services:
+  backend:
+    build: .
+    image: backend
+    ports: 
+      - "3000:3000"
+    environment:
+      - MYSQL_DATABASE=ShoesWeb
+      - MYSQL_USER=backend
+      - MYSQL_ROOT_PASSWORD=int221backend
+    volumes:
+      - ~/backend_data:/public/product-img
+    networks:
+      - intregrated-network
+      
+networks:
+    intregrated-network:
+        external: true
