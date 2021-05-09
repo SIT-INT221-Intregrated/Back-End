@@ -5,6 +5,11 @@ WORKDIR /workspace
 RUN mvn clean install
 
 FROM openjdk:11.0-slim
+VOLUME /tmp
 EXPOSE 3000
-COPY --from=build /workspace/target/*.jar app.jar
-ENTRYPOINT ["java","-jar","app.jar"]
+ARG JAR_FILE=target/ShoesWebsite-0.0.1-SNAPSHOT.jar
+ADD ${JAR_FILE} app.jar
+ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app.jar"]
+
+# COPY --from=build /workspace/target/*.jar app.jar
+# ENTRYPOINT ["java","-jar","app.jar"]
