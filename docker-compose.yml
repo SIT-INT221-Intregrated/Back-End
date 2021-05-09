@@ -1,18 +1,18 @@
 version: "3"
 services:
-  backend:
-    build: .
-    image: backend
-    ports: 
-      - "3000:3000"
-    environment:
-      - MYSQL_DATABASE=ShoesWeb
-      - MYSQL_USER=backend
-      - MYSQL_ROOT_PASSWORD=int221backend
-    volumes:
-      - /home/mew/Back-End/public:/tpm
-    networks:
-      - intregrated-network
+    backend:
+        build: .
+        image: backend
+        ports: 
+          - "3000:3000"
+        environment:
+          - MYSQL_DATABASE=ShoesWeb
+          - MYSQL_USER=backend
+          - MYSQL_ROOT_PASSWORD=int221backend
+        volumes:
+          - /home/mew/Back-End/public:/tpm
+        networks:
+          - intregrated-network
       
 networks:
     intregrated-network:
