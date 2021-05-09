@@ -47,6 +47,17 @@ public class FileUploadController {
 	public Resource serveFile(@PathVariable String filename) {
 		return storageService.loadAsResource(filename);
 	}
+		
+	/*@GetMapping(value = "/Filestest/{filename:.+}", produces = MediaType.IMAGE_JPEG_VALUE)
+	public Resource serveFiletest(@PathVariable String filename) {
+		Resource image =   (Resource) this.storageService.load(filename);     //storageService.loadAsResource(filename);
+		if (image == null) {
+			throw new ProductException(ExceptionResponse.ERROR_CODE.IMAGES_NAME_ALREADY_EXIST,
+					"Can not Find this Images Because Image Id : " + filename + " does not exist.");
+			//return image;
+		}
+		return storageService.loadAsResource(filename);
+	}*/
 
 	@PostMapping("/uploadImage")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file) {

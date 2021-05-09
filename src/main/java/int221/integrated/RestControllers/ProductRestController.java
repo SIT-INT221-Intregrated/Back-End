@@ -1,13 +1,15 @@
 package int221.integrated.RestControllers;
 
+import int221.integrated.Exception.ProductException;
 import int221.integrated.Repositories.ProductsJpaRepository;
 import int221.integrated.models.Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import int221.integrated.Exception.ExceptionResponse;
 
 @CrossOrigin
-@RestController // คลาสนี้เป็น Controller ของ API
+@RestController
 public class ProductRestController {
 	@Autowired
 	private ProductsJpaRepository productsJpaRepository;
@@ -17,9 +19,20 @@ public class ProductRestController {
 		return productsJpaRepository.findAll();
 	}
 
-	@GetMapping("/products/{productCode}")
-	public Products showProduct(@PathVariable String productCode) {
-		Products product = this.productsJpaRepository.findById(productCode).orElse(null);
+	/*
+	 * @GetMapping("/products/{productcode}") public Products
+	 * showProduct(@PathVariable String productcode) { Products product =
+	 * this.productsJpaRepository.findById(productcode).orElse(null); return
+	 * product; }
+	 */
+
+	@GetMapping("/products/{productcode}")
+	public Products showProducttest(@PathVariable String productcode) {
+		Products product = this.productsJpaRepository.findById(productcode).orElse(null);
+		if (product == null) {
+			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_DOES_NOT_EXIST,
+					"Can not Find this Product Because Product Id : " + productcode + " does not exist.");
+		}
 		return product;
 	}
 
@@ -31,8 +44,32 @@ public class ProductRestController {
 		String newProductCode = "p" + (newLastCode);
 		newProducts.setProductcode(newProductCode);
 		productsJpaRepository.save(newProducts);
-		return "uplode Product";
+		return "uplode Product Complete";
 	}
+
+	/*@PostMapping(value = "/addProductstest")
+	public String createtest(@RequestBody Products newProducts) {
+		int lastCode = Integer.parseInt(productsJpaRepository.findAll().get((int) productsJpaRepository.count() - 1)
+				.getProductcode().substring(1));
+		int newLastCode = lastCode + 1;
+		String newProductCode = "p" + (newLastCode);
+
+		if (productsJpaRepository.findById(newProducts.getProductcode()).orElse(null) != null
+				&& productsJpaRepository.findByName(newProducts.getProductname()) != null) {
+			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_ALREADY_EXIST, "Id : "
+					+ newProducts.getProductcode() + " AND Name : " + newProducts.getProductname() + " Have Already");
+		} else if (productsJpaRepository.findById(newProducts.getProductcode()).orElse(null) != null) {
+			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_ID_ALREADY_EXIST,
+					"Id : " + newProducts.getProductcode() + " Have Already");
+		} else if (productsJpaRepository.findByName(newProducts.getProductname()) != null) {
+			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_NAME_ALREADY_EXIST,
+					"Name : " + newProducts.getProductname() + " Have Already");
+		}
+		// return productsJpaRepository.save(newProducts);
+		newProducts.setProductcode(newProductCode);
+		productsJpaRepository.save(newProducts);
+		return "uplode Product Complete";
+	}*/
 
 	@PutMapping("/updateProduct")
 	public Products updateProduct(@RequestBody Products newProducts) {
@@ -49,9 +86,38 @@ public class ProductRestController {
 		return editProduct;
 	}
 
+	/*
+	 * @PutMapping("/updateProduct") public Products updateProducttest(@RequestBody
+	 * Products newProducts) { Products editProduct =
+	 * productsJpaRepository.findById(newProducts.getProductcode()).orElse(null);
+	 * Products productName =
+	 * productsJpaRepository.findByName(editProduct.getProductname());
+	 * 
+	 * if (editProduct == null) { throw new
+	 * ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_DOES_NOT_EXIST,
+	 * "Can't edit. Id : " + editProduct.getProductcode() + " does not exist."); }
+	 * else if (productName != null && editProduct.getProductcode() !=
+	 * productName.getProductcode()) { throw new
+	 * ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_NAME_ALREADY_EXIST,
+	 * "Can't edit . Name : " + editProduct.getProductname() + " already exist."); }
+	 * return productsJpaRepository.save(editProduct); } // return editProduct;
+	 * 
+	 * /*
+	 * 
+	 * @DeleteMapping("/products/{productcode}") public String
+	 * deleteProduct(@PathVariable String productcode) {
+	 * productsJpaRepository.deleteById(productcode); return
+	 * "delete product success"; }
+	 */
+
 	@DeleteMapping("/products/{productcode}")
-	public String deleteProduct(@PathVariable String productcode) {
+	public String delete(@PathVariable String productcode) {
+		Products product = productsJpaRepository.findById(productcode).orElse(null);
+		if (product == null) {
+			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_DOES_NOT_EXIST,
+					"Can not Delete this Product. Id : " + productcode + " does not exist.");
+		}
 		productsJpaRepository.deleteById(productcode);
-		return "delete product success";
+		return "Delete Product Success";
 	}
 }

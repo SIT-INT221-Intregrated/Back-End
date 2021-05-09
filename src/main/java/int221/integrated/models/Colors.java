@@ -49,10 +49,6 @@ public class Colors {
 		this.hexcode = hexcode;
 	}
 
-	public Set<Productcolors> getProductcolors() {
-		return productcolors;
-	}
-
 	public void setProductcolors(Set<Productcolors> productcolors) {
 		this.productcolors = productcolors;
 	}

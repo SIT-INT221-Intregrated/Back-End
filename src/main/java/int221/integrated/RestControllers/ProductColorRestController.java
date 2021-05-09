@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @CrossOrigin
-@RestController // คลาสนี้เป็น Controller ของ API
+@RestController 
 
 public class ProductColorRestController {
 	
