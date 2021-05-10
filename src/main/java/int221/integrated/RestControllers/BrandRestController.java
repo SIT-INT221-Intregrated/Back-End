@@ -29,9 +29,4 @@ public class BrandRestController {
 		Brands brand = this.brandsjpaRepository.findById(brandId).orElse(null);
 		return brand;
 	}
-	
-	@PostMapping("/brands")
-	public Brands createBrand(@RequestBody Brands newBrand) {
-		return brandsjpaRepository.save(newBrand);
-	}
 }

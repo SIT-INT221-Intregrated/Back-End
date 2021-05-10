@@ -100,6 +100,10 @@ public class Products {
 		this.brands_brandid = brands_brandid;
 	}
 	
+	public String getBrands_brandname() {
+		return brands.getBrandname();
+	}
+
 	public Set<Productcolors> getProductcolors() {
 		return productcolors;
 	}

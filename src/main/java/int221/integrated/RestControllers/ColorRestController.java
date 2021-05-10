@@ -22,9 +22,4 @@ public class ColorRestController {
         Colors color = this.colorsJpaRepository.findById(colorId).orElse(null);
         return color;
     }
-    @PostMapping("/colors")
-    public Colors createColor(@RequestBody Colors newColor) {
-        return colorsJpaRepository.save(newColor);
-    }
-
 }
