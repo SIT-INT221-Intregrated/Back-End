@@ -2,7 +2,6 @@ package int221.integrated.models;
 
 import java.sql.Date;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -99,7 +98,7 @@ public class Products {
 	public void setBrands_brandid(String brands_brandid) {
 		this.brands_brandid = brands_brandid;
 	}
-	
+
 	public Set<Productcolors> getProductcolors() {
 		return productcolors;
 	}
@@ -107,6 +106,4 @@ public class Products {
 	public void setProductcolors(Set<Productcolors> productcolors) {
 		this.productcolors = productcolors;
 	}
-
-	
 }

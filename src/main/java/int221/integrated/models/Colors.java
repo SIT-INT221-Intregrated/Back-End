@@ -1,7 +1,6 @@
 package int221.integrated.models;
 
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -52,5 +51,4 @@ public class Colors {
 	public void setProductcolors(Set<Productcolors> productcolors) {
 		this.productcolors = productcolors;
 	}
-
 }

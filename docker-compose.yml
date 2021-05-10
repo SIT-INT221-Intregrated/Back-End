@@ -10,7 +10,7 @@ services:
           - MYSQL_USER=backend
           - MYSQL_ROOT_PASSWORD=int221backend
         volumes:
-          - /home/mew/Back-End/public:/tpm
+          - /home/mew/Back-End/public:/tmp
         networks:
           - intregrated-network
       
