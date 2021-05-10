@@ -11,16 +11,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "brands")
 public class Brands {
+
 	@Id
-	
 	@Column(name = "brandid")
 	private String brandid;
 
-	@OneToMany(mappedBy = "brands_brandid", cascade = CascadeType.ALL, orphanRemoval = true)
-	Set<Products> products;
-
 	@Column(name = "brandname")
 	private String brandname;
+
+	@OneToMany(mappedBy = "brands_brandid", cascade = CascadeType.ALL, orphanRemoval = true)
+	Set<Products> products;
 
 	public String getBrandid() {
 		return brandid;
@@ -37,5 +37,4 @@ public class Brands {
 	public void setBrandname(String brandname) {
 		this.brandname = brandname;
 	}
-
 }

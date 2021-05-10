@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
 @Entity
@@ -58,13 +57,12 @@ public class Productcolors {
 	public void setColorid(String colorid) {
 		this.colorid = colorid;
 	}
-
-	public void setColors(Colors colors) {
+    
+	public void setColors(Colors colors) {   
 		this.colors = colors;
 	}
     
 	public String getHexcode() {
         return colors.getHexcode();
     }
-    
 }
